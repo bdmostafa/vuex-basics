@@ -12,37 +12,50 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+
 export default {
   computed: {
       products() {
           return this.$store.state.products
       },
-      saleProducts() {
-        //   This logic is transferred to store in getters
-        /*
-           var saleProducts = this.$store.state.products.map(product => {
-              return {
-                  title: '**' + product.title,
-                  price: product.price / .30
-              }
-          })
-          return saleProducts
-        */
-        return this.$store.getters.saleProducts
-      }
+    //   saleProducts() {
+    //     //   This logic is transferred to store in getters
+    //     /*
+    //        var saleProducts = this.$store.state.products.map(product => {
+    //           return {
+    //               title: '**' + product.title,
+    //               price: product.price / .30
+    //           }
+    //       })
+    //       return saleProducts
+    //     */
+    //     return this.$store.getters.saleProducts
+    //   }
+
+    //   When multiple getters, use mapGetters
+    ...mapGetters([
+        'saleProducts'
+    ])
   },
   methods: {
-      reducePrice: function (amount) {
-          /*
-          this.$store.state.products.forEach(product => {
-              product.price -= 1;
-          });
-          */
-        //   this.$store.commit('REDUCE_PRICE')
+    //   reducePrice: function (amount) {
+    //       /*
+    //       this.$store.state.products.forEach(product => {
+    //           product.price -= 1;
+    //       });
+    //       */
+    //     //   this.$store.commit('REDUCE_PRICE')
 
-        // After adding actions in store, use dispatching to the actions
-        this.$store.dispatch('reducePrice', amount)
-      }
+    //     // After adding actions in store, use dispatching to the actions
+    //     this.$store.dispatch('reducePrice', amount)
+    //   }
+
+    // When multiple actions, use mapActions
+    ...mapActions([
+        'reducePrice'
+    ])
   }
 };
 </script>
