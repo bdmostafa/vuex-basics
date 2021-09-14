@@ -38,7 +38,10 @@ export default {
               product.price -= 1;
           });
           */
-          this.$store.commit('reducePrice')
+        //   this.$store.commit('REDUCE_PRICE')
+
+        // After adding actions in store, use dispatching to the actions
+        this.$store.dispatch('reducePrice')
       }
   }
 };
