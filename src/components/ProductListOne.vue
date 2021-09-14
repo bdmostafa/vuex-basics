@@ -7,7 +7,7 @@
         <span class="price"> ${{ product.price.toFixed(2) }}</span>
       </li>
     </ul>
-    <button @click="reducePrice">Reduce Price</button>
+    <button @click="reducePrice(2)">Reduce Price</button>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
       }
   },
   methods: {
-      reducePrice: function () {
+      reducePrice: function (amount) {
           /*
           this.$store.state.products.forEach(product => {
               product.price -= 1;
@@ -41,7 +41,7 @@ export default {
         //   this.$store.commit('REDUCE_PRICE')
 
         // After adding actions in store, use dispatching to the actions
-        this.$store.dispatch('reducePrice')
+        this.$store.dispatch('reducePrice', amount)
       }
   }
 };
